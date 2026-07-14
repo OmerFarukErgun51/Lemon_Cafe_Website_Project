@@ -26,23 +26,20 @@
             <div class="header-logo">
               <h2 id="baslık">Lemon Cafe</h2>
             </div>
-            <div class="header-menu">
-              <ul id="menuItems">
-                <li><a href="#header" style="color: black">Anasayfa</a></li>
-                <li><a href="#about" style="color: black">Hakkımızda</a></li>
-                <li><a href="#portfolio" style="color: black">Bilgi</a></li>
-                <li>
-                  <a href="#Hizmetlerimiz" style="color: black"
-                    >Hizmetlerimiz</a
-                  >
-                </li>
-                <div class="search-engine" id="searchEngine">
-                  <input type="text" />
-                  <i class="bi bi-search" id="searchIcon"></i>
-                </div>
-              </ul>
-              <i class="bi bi-list" id="menu-icon" onclick="menuToggle();"></i>
-            </div>
+             <div class="header-menu">
+               <ul id="menuItems">
+                 <li><a href="#header">Anasayfa</a></li>
+                 <li><a href="#about">Hakkımızda</a></li>
+                 <li><a href="#menu">Menü</a></li>
+                 <li><a href="#portfolio">Galeri</a></li>
+                 <li><a href="#Hizmetlerimiz">Hizmetlerimiz</a></li>
+                 <div class="search-engine" id="searchEngine">
+                   <input type="text" placeholder="Ara..." />
+                   <i class="bi bi-search" id="searchIcon"></i>
+                 </div>
+               </ul>
+               <i class="bi bi-list" id="menu-icon" onclick="menuToggle();"></i>
+             </div>
           </div>
           <div class="header-text">
             <h1 style="color: rgb(255, 166, 0); font-size: 100px">
@@ -86,49 +83,49 @@
     <!-- Bilgi Başlangıç -->
     <section id="portfolio">
       <div class="portfolio">
-        <div class="portfolio-item ani1">
+        <div class="portfolio-item" data-name="latte kahve coffee cup sıcak hot">
           <img src="/img/latte.jpg" />
           <div class="overlay">
             <i class="bi bi-cup-hot-fill"></i>
           </div>
         </div>
-        <div class="portfolio-item ani2">
+        <div class="portfolio-item" data-name="çikolata chocolate cookie tatlı dessert">
           <img src="/img/chocalate.jpg" />
           <div class="overlay">
             <i class="bi bi-cookie"></i>
           </div>
         </div>
-        <div class="portfolio-item ani3">
+        <div class="portfolio-item" data-name="kek cake pasta slice dilim tatlı dessert">
           <img src="/img/cake.jpg" />
           <div class="overlay">
             <i class="bi bi-cake2-fill"></i>
           </div>
         </div>
-        <div class="portfolio-item ani4">
+        <div class="portfolio-item" data-name="kurabiye cookies bisküvi biscuit tatlı dessert">
           <img src="/img/coolies.jpg" />
           <div class="overlay">
             <i class="bi bi-cookie"></i>
           </div>
         </div>
-        <div class="portfolio-item ani5">
+        <div class="portfolio-item" data-name="dondurma ice cream tatlı dessert soğuk cold">
           <img src="/img/dondurma.jpg" />
           <div class="overlay">
             <i class="bi bi-cake2-fill"></i>
           </div>
         </div>
-        <div class="portfolio-item ani6">
+        <div class="portfolio-item" data-name="kahve çekirdeği coffee beans coffee cup">
           <img src="/img/kahveÇekirdeği.jpg" />
           <div class="overlay">
             <i class="bi bi-cup-hot-fill"></i>
           </div>
         </div>
-        <div class="portfolio-item ani7">
+        <div class="portfolio-item" data-name="sıcak çikolata hot chocolate cocoa sıcak hot cup">
           <img src="/img/sıcakÇikolata.jpg" />
           <div class="overlay">
             <i class="bi bi-cup-hot-fill"></i>  
           </div>
         </div>
-        <div class="portfolio-item ani8">
+        <div class="portfolio-item" data-name="pasta cake tatlı dessert dilim slice">
           <img src="/img/pasta.jpg" />
           <div class="overlay">
             <i class="bi bi-cake2-fill"></i>
@@ -139,7 +136,7 @@
     <!-- Bilgi Bitiş -->
 
     <!-- Menü Başlangıç -->
-    <section id="about">
+    <section id="menu">
       <div class="about">
         <div class="container">
           <div class="about-title">
@@ -246,57 +243,90 @@
     <!-- İletişim Bitiş -->
 
     <script>
-      window.sr=ScrollReveal();
-      sr.reveal('.anime-left',{
-        origin:'left',
-        duration:1000,
-        distance:'25rem',
-        delay:300
-      })
-      sr.reveal('.anime-right',{
-        origin:'right',
-        duration:1000,
-        distance:'25rem',
-        delay:600
-      })
-      sr.reveal('.anime-top',{
-        origin:'top',
-        duration:1000,
-        distance:'25rem',
-        delay:300
-      })
-      sr.reveal('.anime-bottom',{
-        origin:'bottom',
-        duration:1000,
-        distance:'25rem',
-        delay:600
-      })
+      // ScrollReveal Configuration
+      window.sr = ScrollReveal();
+      sr.reveal('.anime-left', {
+        origin: 'left',
+        duration: 1000,
+        distance: '25rem',
+        delay: 300
+      });
+      sr.reveal('.anime-right', {
+        origin: 'right',
+        duration: 1000,
+        distance: '25rem',
+        delay: 600
+      });
+      sr.reveal('.anime-top', {
+        origin: 'top',
+        duration: 1000,
+        distance: '25rem',
+        delay: 300
+      });
+      sr.reveal('.anime-bottom', {
+        origin: 'bottom',
+        duration: 1000,
+        distance: '25rem',
+        delay: 600
+      });
 
+      // Refactored Staggered Reveal Algorithm for Gallery
+      ScrollReveal().reveal('.portfolio-item', {
+        delay: 200,
+        interval: 150,
+        duration: 800,
+        distance: '2rem',
+        origin: 'bottom'
+      });
+    </script>
+    
+    <script>
+      // Responsive Menu Toggle
+      var menuItems = document.getElementById('menuItems');
+      menuItems.style.maxHeight = "0px";
+
+      function menuToggle() {
+        if (menuItems.style.maxHeight == "0px") {
+          menuItems.style.maxHeight = "250px"; // Increased to fit the new navigation link
+        } else {
+          menuItems.style.maxHeight = "0px";
+        }
+      }
     </script>
 
     <script>
-      ScrollReveal().reveal('.ani1',{delay:250});
-      ScrollReveal().reveal('.ani2',{delay:500});
-      ScrollReveal().reveal('.ani3',{delay:750});
-      ScrollReveal().reveal('.ani4',{delay:1000});
-      ScrollReveal().reveal('.ani5',{delay:1250});
-      ScrollReveal().reveal('.ani6',{delay:1500});
-      ScrollReveal().reveal('.ani7',{delay:1750});
-      ScrollReveal().reveal('.ani8',{delay:2000});
-    </script>
-    
-     <script>
-      var menuItems=document.getElementById('menuItems');
-      menuItems.style.maxHeight="0px";
+      // Scrollspy Navigation Highlight Algorithm
+      const sections = document.querySelectorAll('header, section');
+      const navLinks = document.querySelectorAll('.header-menu ul li a');
 
-      function menuToggle(){
-        if(menuItems.style.maxHeight=="0px"){
-          menuItems.style.maxHeight="200px";
-        }else{
-          menuItems.style.maxHeight="0px";
+      const observerOptions = {
+        root: null,
+        rootMargin: '-30% 0px -40% 0px',
+        threshold: 0
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            navLinks.forEach(link => {
+              const href = link.getAttribute('href');
+              if (href === `#${id}`) {
+                link.classList.add('active');
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          }
+        });
+      }, observerOptions);
+
+      sections.forEach(section => {
+        if (section.id) {
+          observer.observe(section);
         }
-      }
-     </script>
+      });
+    </script>
     
     <script src="/css/search.js"></script>
     <script
