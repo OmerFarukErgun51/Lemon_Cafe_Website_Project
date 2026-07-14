@@ -177,3 +177,6 @@ ScrollReveal().reveal('.ani1', { delay: 100 }); // Changed from 250 to 100
 2. **Search Logic Integration**: Enable filtering in the gallery list or directing search queries to specific sections of the landing page.
 3. **Menu JSON Database**: Instead of rendering a static menu image, fetch a JSON menu database to display items dynamically with pricing and descriptions.
 4. **Dark Mode Theme**: Add a dark mode toggle to shift the light background colors to a rich dark cocoa scheme.
+
+
+<!-- GPG Duzeltme Testi -->
